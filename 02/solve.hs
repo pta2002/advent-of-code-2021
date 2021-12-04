@@ -19,9 +19,7 @@ calculatePosition :: Position -> [Command] -> Position
 calculatePosition = foldl stepForward
 
 part1 :: [Command] -> Int
-part1 cmds = x * y
-  where
-    (x, y) = calculatePosition (0, 0) cmds
+part1 = uncurry (*) . calculatePosition (0, 0)
 
 stepForward2 :: Position2 -> Command -> Position2
 stepForward2 (x, y, aim) (Forward n) = (x + n, y + aim * n, aim)
@@ -29,10 +27,7 @@ stepForward2 (x, y, aim) (Down n) = (x, y, aim + n)
 stepForward2 (x, y, aim) (Up n) = (x, y, aim - n)
 
 part2 :: [Command] -> Int
-part2 cmds = x * y
-  where
-    (x, y, _) = foldl stepForward2 (0, 0, 0) cmds
-
+part2 = uncurry (*) . (\(a,b,c) -> (a,b)) . foldl stepForward2 (0, 0, 0)
 
 parseLine :: String -> Command
 parseLine s = case words s of
