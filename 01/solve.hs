@@ -12,6 +12,6 @@ part2 = part1 . slidingWindow
 
 main :: IO ()
 main = do
-  input <- (fmap (read :: String -> Int)) <$> lines <$> readFile "input.txt"
+  input <- fmap (read :: String -> Int) . lines <$> readFile "input.txt"
   putStrLn $ "Part 1: " ++ show (part1 input)
   putStrLn $ "Part 2: " ++ show (part2 input)

@@ -41,7 +41,7 @@ readBinary = fst . head . readInt 2 (`elem` "01") digitToInt
 rates :: [String] -> (Int, Int)
 rates s = (readBinary gamma, readBinary $ invert gamma)
   where
-    gamma = map (getCommonBit s) [0..((length $ s !! 0) - 1)]
+    gamma = map (getCommonBit s) [0..(length (head s) - 1)]
 
 part1 :: [String] -> Int
 part1 = uncurry (*) . rates

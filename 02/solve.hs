@@ -2,7 +2,7 @@ data Command = Forward Int | Down Int | Up Int deriving (Eq, Show)
 type Position = (Int, Int)
 type Position2 = (Int, Int, Int)
 
-sampleInput = 
+sampleInput =
   [ Forward 5
   , Down 5
   , Forward 8
@@ -38,6 +38,6 @@ parseLine s = case words s of
 
 main :: IO ()
 main = do
-  input <- (fmap (parseLine)) <$> lines <$> readFile "input.txt"
+  input <- fmap parseLine . lines <$> readFile "input.txt"
   putStrLn $ "Part 1: " ++ show (part1 input)
   putStrLn $ "Part 2: " ++ show (part2 input)
